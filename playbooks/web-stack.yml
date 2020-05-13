@@ -1,0 +1,29 @@
+---
+- name: Gather facts
+  hosts: web
+  gather_facts: true
+
+# - name: Configure DB Server
+#   hosts: localhost
+#   # become: true
+#   vars_files:
+#     - secrets.yml
+#   roles:
+#     # - role: mysql-server
+#     - role: todolist-db
+
+- name: Configure Web Server
+  hosts: web
+  become: true
+  #vars_files:
+  #  - secrets.yml
+
+  # vars:
+  #   moved to group_vars file 
+
+  roles:
+    - role: tomcat-server
+    - role: todo-webapp
+
+
+        
